@@ -538,7 +538,7 @@ $.extend(Selectize.prototype, {
 						e.preventDefault();
 					}
 				}
-				if (self.settings.create && self.createItem()) {
+				else if (self.settings.create && self.createItem()) {
 					e.preventDefault();
 				}
 				return;
