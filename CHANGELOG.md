@@ -1,6 +1,10 @@
 <!-- Feel free to put either your handle and/or full name, according to
      your privacy needs -->
 
+*  Fixed bug that can call `createItem` twice when tab is used.
+
+   *@cerdiogenes* 
+
 *  Added `spellcheck` to the list of `input` attributes that are inherited by selectize.
 
    *@winzig*
