@@ -424,25 +424,19 @@ $.extend(Selectize.prototype, {
 	 */
 	onPaste: function(e) {
 		var self = this;
-
 		if (self.isFull() || self.isInputHidden || self.isLocked) {
 			e.preventDefault();
-			return;
-		}
-
-		// If a regex or string is included, this will split the pasted
-		// input and create Items for each separate value
-		if (self.settings.splitOn) {
-
-			// Wait for pasted text to be recognized in value
+		} else {
+			// If a regex or string is included, this will split the pasted
+			// input and create Items for each separate value
 			setTimeout(function() {
-				var pastedText = self.$control_input.val();
-				if(!pastedText.match(self.settings.splitOn)){ return }
-
-				var splitInput = $.trim(pastedText).split(self.settings.splitOn);
-				for (var i = 0, n = splitInput.length; i < n; i++) {
-					self.createItem(splitInput[i]);
+				if (self.settings.splitOn) {
+					var splitInput = $.trim(self.$control_input.val() || '').split(self.settings.splitOn);
+					for (var i = 0, n = splitInput.length; i < n; i++) {
+						self.createItem(splitInput[i]);
+					}
 				}
+				self.onKeyUp(e);
 			}, 0);
 		}
 	},
